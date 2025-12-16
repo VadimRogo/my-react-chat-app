@@ -70,8 +70,8 @@ function Chat() {
                     display: 'inline-block',
                     p: 1,
                     borderRadius: 1,
-                    bgcolor: msg.sender === 'user' ? 'primary.main' : '#1A2433',
-                    color: msg.sender === 'user' ? 'primary.contrastText' : 'text.primary',
+                    bgcolor: msg.sender === 'user' ? 'primary.main' : '#99CCFF',
+                    color: msg.sender === 'user' ? 'primary.contrastText' : '#000000',
                  }}>
                   {msg.text}
                 </Typography>

@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import {
   Box,
   TextField,
@@ -12,9 +12,19 @@ import {
 } from '@mui/material';
 
 function Login({ onLogin }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    onLogin();
+    if (email === 'admin' && password === 'admin') {
+      onLogin();
+      navigate('/profile');
+    } else {
+      setError('Неверный логин или пароль');
+    }
   };
 
   return (
@@ -42,6 +52,11 @@ function Login({ onLogin }) {
         <Typography component="h1" variant="h5" sx={{ textAlign: 'center', mb: 3 }}>
           Войти
         </Typography>
+        {error && (
+          <Typography color="error" align="center" sx={{ mb: 2 }}>
+            {error}
+          </Typography>
+        )}
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -52,6 +67,8 @@ function Login({ onLogin }) {
             name="email"
             autoComplete="email"
             autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             InputLabelProps={{
               style: { color: 'white' },
             }}
@@ -66,6 +83,8 @@ function Login({ onLogin }) {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             InputLabelProps={{
               style: { color: 'white' },
             }}
