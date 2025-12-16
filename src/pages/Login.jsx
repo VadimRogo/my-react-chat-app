@@ -80,7 +80,7 @@ function Login({ onLogin }) {
               Forgot password?
             </Link>
             <Link component={RouterLink} to="/signup" variant="body2">
-              {"Don't have an account? Sign Up"}
+              {"Sign Up"}
             </Link>
           </Box>
         </Box>

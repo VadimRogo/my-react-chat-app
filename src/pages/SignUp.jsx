@@ -67,7 +67,7 @@ function SignUp() {
           </Button>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Link component={RouterLink} to="/" variant="body2">
-              {"Already have an account? Sign in"}
+              {"Sign in"}
             </Link>
           </Box>
         </Box>
