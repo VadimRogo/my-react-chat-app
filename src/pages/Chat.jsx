@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, Container, TextField, Button } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -8,10 +8,20 @@ function Chat() {
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
-      setMessages([...messages, { text: inputValue, sender: 'user' }]);
+      const userMessage = { text: inputValue, sender: 'user' };
+      setMessages((prevMessages) => [...prevMessages, userMessage]);
       setInputValue('');
     }
   };
+
+  useEffect(() => {
+    if (messages.length > 0 && messages[messages.length - 1].sender === 'user') {
+      setTimeout(() => {
+        const aiMessage = { text: "Я пока что не работаю", sender: 'ai' };
+        setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      }, 500);
+    }
+  }, [messages]);
 
   return (
     <Container component="main" maxWidth="md">
@@ -25,14 +35,15 @@ function Chat() {
           padding: 4,
           borderRadius: 2,
           height: '80vh',
+          backgroundColor: '#0C141E'
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: 2 }}>
           <Typography component="h1" variant="h5">
-            Chat with AI
+            Чат с ИИ
           </Typography>
-          <Button component={RouterLink} to="/profile" variant="outlined">
-              Back to Profile
+          <Button component={RouterLink} to="/profile" variant="outlined" sx={{ background: '#4F00F9', color: 'white' }}>
+              Вернуться в профиль
           </Button>
         </Box>
 
@@ -50,7 +61,7 @@ function Chat() {
         >
           {messages.length === 0 ? (
             <Typography color="text.secondary">
-              No messages yet. Start the conversation!
+              Сообщений пока нет. Начните диалог!
             </Typography>
           ) : (
             messages.map((msg, index) => (
@@ -59,7 +70,7 @@ function Chat() {
                     display: 'inline-block',
                     p: 1,
                     borderRadius: 1,
-                    bgcolor: msg.sender === 'user' ? 'primary.main' : 'background.paper',
+                    bgcolor: msg.sender === 'user' ? 'primary.main' : '#1A2433',
                     color: msg.sender === 'user' ? 'primary.contrastText' : 'text.primary',
                  }}>
                   {msg.text}
@@ -80,7 +91,6 @@ function Chat() {
           <TextField
             fullWidth
             variant="outlined"
-            placeholder="Type your message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
@@ -88,9 +98,9 @@ function Chat() {
             type="submit"
             variant="contained"
             color="primary"
-            sx={{ ml: 1, px: 3 }}
+            sx={{ ml: 1, px: 3, background: '#4F00F9', color: 'white' }}
           >
-            Send
+            Отправить
           </Button>
         </Box>
       </Paper>

@@ -1,78 +1,91 @@
 import React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
-  Container,
   Box,
   TextField,
   Button,
   Typography,
   Link,
-  Paper,
 } from "@mui/material";
 
 function SignUp() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/signup-details");
+  };
+
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper
-        elevation={3}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <Box
         sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: 4,
-          borderRadius: 2,
+          padding: "40px",
+          borderRadius: "10px",
+          background: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+          color: "white",
+          width: "100%",
+          maxWidth: "400px",
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
-          Sign Up
+        <Typography component="h1" variant="h5" sx={{ mb: 3, textAlign: "center" }}>
+          Регистрация
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Name"
-            name="name"
-            autoComplete="name"
-            autoFocus
-          />
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Адрес электронной почты"
             name="email"
             autoComplete="email"
+            autoFocus
+            InputLabelProps={{
+              style: { color: 'white' },
+            }}
+            sx={{ input: { color: 'white' } }}
           />
           <TextField
             margin="normal"
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Пароль"
             type="password"
             id="password"
             autoComplete="new-password"
+            InputLabelProps={{
+              style: { color: 'white' },
+            }}
+            sx={{ input: { color: 'white' } }}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{ mt: 3, mb: 2, background: '#4F00F9', color: 'white' }}
           >
-            Sign Up
+            Зарегистрироваться
           </Button>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Link component={RouterLink} to="/" variant="body2">
-              {"Sign in"}
+            <Link component={RouterLink} to="/" variant="body2" sx={{ color: 'white' }}>
+              {"Уже есть аккаунт? Войти"}
             </Link>
           </Box>
         </Box>
-      </Paper>
-    </Container>
+      </Box>
+    </Box>
   );
 }
 
