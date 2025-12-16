@@ -34,10 +34,8 @@ function Profile({ onLogout, userDetails }) {
         sx={{
           padding: '40px',
           borderRadius: '10px',
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+          background: '#2D2D2D',
+          boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.5)',
           color: 'white',
           width: '100%',
           maxWidth: '400px',
@@ -49,7 +47,7 @@ function Profile({ onLogout, userDetails }) {
         <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
           Добро пожаловать!
         </Typography>
-        <Avatar sx={{ width: 80, height: 80, mb: 2, bgcolor: '#4F00F9', fontSize: '2.5rem' }}>
+        <Avatar sx={{ width: 80, height: 80, mb: 2, bgcolor: 'primary.main', fontSize: '2.5rem' }}>
           {userDetails ? getInitials(userDetails.firstName, userDetails.lastName) : ''}
         </Avatar>
         {userDetails && (
@@ -65,14 +63,14 @@ function Profile({ onLogout, userDetails }) {
             component={RouterLink}
             to="/chat"
             variant="contained"
-            sx={{ background: '#4F00F9', color: 'white' }}
+            sx={{ color: 'white' }}
           >
             Перейти в AI чат
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             onClick={onLogout}
-            sx={{ color: 'white', borderColor: 'white', background: '#4F00F9' }}
+            sx={{ color: 'white' }}
           >
             Выйти
           </Button>

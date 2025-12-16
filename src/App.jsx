@@ -12,6 +12,9 @@ import SignUpDetails from "./pages/SignUpDetails";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    primary: {
+      main: '#3B82F6', // A more muted blue
+    },
   },
   typography: {
     fontFamily: '"Futura PT", sans-serif',
@@ -22,7 +25,7 @@ const globalStyles = (
   <GlobalStyles
     styles={{
       body: {
-        background: "linear-gradient(to right, #6a11cb, #2575fc)",
+        background: "#1A1A1A", // Dark charcoal background
         fontFamily: '"Futura PT", sans-serif',
       },
       "*" : {

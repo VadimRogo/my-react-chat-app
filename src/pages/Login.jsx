@@ -40,10 +40,8 @@ function Login({ onLogin }) {
         sx={{
           padding: '40px',
           borderRadius: '10px',
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+          background: '#2D2D2D',
+          boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.5)',
           color: 'white',
           width: '100%',
           maxWidth: '400px',
@@ -70,9 +68,22 @@ function Login({ onLogin }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             InputLabelProps={{
-              style: { color: 'white' },
+              style: { color: '#ccc' },
             }}
-            sx={{ input: { color: 'white' } }}
+            sx={{ 
+              input: { color: 'white' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#555',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#777',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main',
+                },
+              },
+            }}
           />
           <TextField
             margin="normal"
@@ -86,27 +97,40 @@ function Login({ onLogin }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             InputLabelProps={{
-              style: { color: 'white' },
+              style: { color: '#ccc' },
             }}
-            sx={{ input: { color: 'white' } }}
+            sx={{ 
+              input: { color: 'white' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#555',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#777',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main',
+                },
+              },
+            }}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" sx={{ color: 'rgba(255, 255, 255, 0.7)' }} />} // Adjusted for visibility
+            control={<Checkbox value="remember" sx={{ color: '#ccc' }} />} 
             label="Запомнить меня"
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, background: '#4F00F9', color: 'white' }}
+            sx={{ mt: 3, mb: 2, color: 'white' }}
           >
             Войти
           </Button>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link href="#" variant="body2" sx={{ color: 'white' }}>
+            <Link href="#" variant="body2" sx={{ color: 'primary.main' }}>
               Забыли пароль?
             </Link>
-            <Link component={RouterLink} to="/signup" variant="body2" sx={{ color: 'white', whiteSpace: 'nowrap' }}>
+            <Link component={RouterLink} to="/signup" variant="body2" sx={{ color: 'primary.main', whiteSpace: 'nowrap' }}>
               {"Нет аккаунта? Зарегистрироваться"}
             </Link>
           </Box>

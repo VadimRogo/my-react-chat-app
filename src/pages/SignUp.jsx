@@ -29,10 +29,8 @@ function SignUp() {
         sx={{
           padding: "40px",
           borderRadius: "10px",
-          background: "rgba(255, 255, 255, 0.1)",
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
-          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+          background: "#2D2D2D",
+          boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.5)",
           color: "white",
           width: "100%",
           maxWidth: "400px",
@@ -52,9 +50,22 @@ function SignUp() {
             autoComplete="email"
             autoFocus
             InputLabelProps={{
-              style: { color: 'white' },
+              style: { color: '#ccc' },
             }}
-            sx={{ input: { color: 'white' } }}
+            sx={{ 
+              input: { color: 'white' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#555',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#777',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main',
+                },
+              },
+            }}
           />
           <TextField
             margin="normal"
@@ -66,20 +77,33 @@ function SignUp() {
             id="password"
             autoComplete="new-password"
             InputLabelProps={{
-              style: { color: 'white' },
+              style: { color: '#ccc' },
             }}
-            sx={{ input: { color: 'white' } }}
+            sx={{ 
+              input: { color: 'white' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#555',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#777',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main',
+                },
+              },
+            }}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, background: '#4F00F9', color: 'white' }}
+            sx={{ mt: 3, mb: 2, color: 'white' }}
           >
             Зарегистрироваться
           </Button>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Link component={RouterLink} to="/" variant="body2" sx={{ color: 'white' }}>
+            <Link component={RouterLink} to="/" variant="body2" sx={{ color: 'primary.main' }}>
               {"Уже есть аккаунт? Войти"}
             </Link>
           </Box>

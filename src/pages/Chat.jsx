@@ -35,14 +35,15 @@ function Chat() {
           padding: 4,
           borderRadius: 2,
           height: '80vh',
-          backgroundColor: '#0C141E'
+          background: '#2D2D2D',
+          boxShadow: '0 4px 12px 0 rgba(0, 0, 0, 0.5)',
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', mb: 2 }}>
           <Typography component="h1" variant="h5">
             Чат с ИИ
           </Typography>
-          <Button component={RouterLink} to="/profile" variant="outlined" sx={{ background: '#4F00F9', color: 'white' }}>
+          <Button component={RouterLink} to="/profile" variant="contained" sx={{ color: 'white' }}>
               Вернуться в профиль
           </Button>
         </Box>
@@ -54,7 +55,7 @@ function Chat() {
             overflowY: 'auto',
             mb: 2,
             border: '1px solid',
-            borderColor: 'divider',
+            borderColor: '#555',
             borderRadius: 1,
             padding: 2,
           }}
@@ -70,8 +71,8 @@ function Chat() {
                     display: 'inline-block',
                     p: 1,
                     borderRadius: 1,
-                    bgcolor: msg.sender === 'user' ? 'primary.main' : '#99CCFF',
-                    color: msg.sender === 'user' ? 'primary.contrastText' : '#000000',
+                    bgcolor: msg.sender === 'user' ? 'primary.main' : '#424242',
+                    color: 'white',
                  }}>
                   {msg.text}
                 </Typography>
@@ -93,12 +94,30 @@ function Chat() {
             variant="outlined"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
+            label="Введите ваше сообщение..."
+            InputLabelProps={{
+              style: { color: '#ccc' },
+            }}
+            sx={{ 
+              input: { color: 'white' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#555',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#777',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main',
+                },
+              },
+            }}
           />
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            sx={{ ml: 1, px: 3, background: '#4F00F9', color: 'white' }}
+            sx={{ ml: 1, px: 3, color: 'white' }}
           >
             Отправить
           </Button>
