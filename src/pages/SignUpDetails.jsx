@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, TextField, Button, Typography } from '@mui/material';
 
 const SignUpDetails = ({ onSignUpDetails }) => {
@@ -10,6 +10,7 @@ const SignUpDetails = ({ onSignUpDetails }) => {
     dateOfBirth: '',
   });
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,7 +22,9 @@ const SignUpDetails = ({ onSignUpDetails }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUpDetails(formData);
+    const params = new URLSearchParams(location.search);
+    const email = params.get('email');
+    onSignUpDetails({ ...formData, email });
     navigate('/profile');
   };
 

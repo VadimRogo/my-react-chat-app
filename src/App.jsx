@@ -50,6 +50,7 @@ function App() {
 
   const handleSignUpDetails = (details) => {
     setUserDetails(details);
+    setIsAuthenticated(true);
   };
 
   return (

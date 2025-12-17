@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -10,10 +10,13 @@ import {
 
 function SignUp() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/signup-details");
+    const data = new FormData(event.currentTarget);
+    const email = data.get("email");
+    navigate(`/signup-details?email=${email}`);
   };
 
   return (

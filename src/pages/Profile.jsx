@@ -1,6 +1,11 @@
+
 import React from 'react';
-import { Box, Typography, Container, Button, Avatar } from '@mui/material';
+import { Box, Typography, Container, Button, Avatar, Paper } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import PersonIcon from '@mui/icons-material/Person';
+import CakeIcon from '@mui/icons-material/Cake';
+import TodayIcon from '@mui/icons-material/Today';
+import EmailIcon from '@mui/icons-material/Email';
 
 function Profile({ onLogout, userDetails }) {
   const getInitials = (firstName = '', lastName = '') => {
@@ -21,13 +26,35 @@ function Profile({ onLogout, userDetails }) {
     return age;
   };
 
+  const DataField = ({ icon, label, value }) => (
+    <Paper
+      elevation={3}
+      sx={{
+        p: 2,
+        mb: 2,
+        borderRadius: 2,
+        background: 'rgba(255, 255, 255, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 2
+      }}
+    >
+      {icon}
+      <Box>
+        <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>{label}</Typography>
+        <Typography variant="body1">{value}</Typography>
+      </Box>
+    </Paper>
+  );
+
   return (
     <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        minHeight: '100vh',
+        p: 2
       }}
     >
       <Box
@@ -47,30 +74,33 @@ function Profile({ onLogout, userDetails }) {
         <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
           Добро пожаловать!
         </Typography>
-        <Avatar sx={{ width: 80, height: 80, mb: 2, bgcolor: 'primary.main', fontSize: '2.5rem' }}>
+        <Avatar sx={{ width: 80, height: 80, mb: 3, bgcolor: 'primary.main', fontSize: '2.5rem' }}>
           {userDetails ? getInitials(userDetails.firstName, userDetails.lastName) : ''}
         </Avatar>
+
         {userDetails && (
-          <Box sx={{ mt: 2, mb: 3, textAlign: 'left', width: '100%' }}>
-            <Typography variant="body1">Имя: {userDetails.firstName}</Typography>
-            <Typography variant="body1">Фамилия: {userDetails.lastName}</Typography>
-            <Typography variant="body1">Дата рождения: {userDetails.dateOfBirth}</Typography>
-            <Typography variant="body1">Возраст: {calculateAge(userDetails.dateOfBirth)}</Typography>
+          <Box sx={{ width: '100%' }}>
+            <DataField icon={<PersonIcon />} label="Имя" value={userDetails.firstName} />
+            <DataField icon={<PersonIcon />} label="Фамилия" value={userDetails.lastName} />
+            <DataField icon={<EmailIcon />} label="Почта" value={userDetails.email} />
+            <DataField icon={<CakeIcon />} label="Дата рождения" value={userDetails.dateOfBirth} />
+            <DataField icon={<TodayIcon />} label="Возраст" value={calculateAge(userDetails.dateOfBirth)} />
           </Box>
         )}
-        <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
+
+        <Box sx={{ display: 'flex', gap: 2, mt: 3, width: '100%' }}>
           <Button
             component={RouterLink}
             to="/chat"
             variant="contained"
-            sx={{ color: 'white' }}
+            sx={{ flex: 1, color: 'white' }}
           >
-            Перейти в AI чат
+            AI чат
           </Button>
           <Button
-            variant="contained"
+            variant="outlined"
             onClick={onLogout}
-            sx={{ color: 'white' }}
+            sx={{ flex: 1, color: 'white', borderColor: 'rgba(255, 255, 255, 0.5)' }}
           >
             Выйти
           </Button>
